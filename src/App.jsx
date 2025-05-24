@@ -10,95 +10,42 @@ export default function CodeSnippetsPage() {
     javascript: [
       {
         id: 1,
-        title: "Hello World Function",
-        description: "A simple function to display a greeting message",
+        title: "Random Color",
+        description: "A simple function to change the color of your webpage randomly",
         difficulty: "Beginner",
-        code: `function sayHello(name) {
-  console.log("Hello, " + name + "!");
-  return "Hello, " + name + "!";
-}
-
-// Usage
-sayHello("Summer Camper");`,
+        code: `<script>
+        const button = document.getElementById('changeColor');
+        button.addEventListener('click', function() {
+            // Change the background color randomly
+            document.body.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+        });
+    </script>`,
       },
       {
         id: 2,
-        title: "Array Methods Practice",
-        description: "Common array methods every student should know",
+        title: "Alert and Time Function",
+        description: "Simple Javascript Alert evoking and local time display",
         difficulty: "Intermediate",
-        code: `const fruits = ['apple', 'banana', 'orange', 'grape'];
+        code: `
+        <script>
+        
+        // Display an alert on button click
+        const greetButton = document.getElementById('greetButton');
+        greetButton.addEventListener('click', function() {
+            alert('Hello! Welcome to my portfolio!');
+        });
 
-// Add items
-fruits.push('mango');
-fruits.unshift('strawberry');
-
-// Remove items
-const lastFruit = fruits.pop();
-const firstFruit = fruits.shift();
-
-// Find items
-const hasApple = fruits.includes('apple');
-const appleIndex = fruits.indexOf('apple');
-
-// Transform array
-const upperFruits = fruits.map(fruit => fruit.toUpperCase());
-const longFruits = fruits.filter(fruit => fruit.length > 5);
-
-console.log(fruits);`,
+        // Display the live time
+        const timeDisplay = document.getElementById('timeDisplay');
+        function updateTime() {
+            const now = new Date();
+            timeDisplay.textContent = "Current Time:" + now.toLocaleTimeString();
+        }
+        setInterval(updateTime, 1000); // Update time every second
+        updateTime(); // Initial call
+    </script>`,
       },
-      {
-        id: 3,
-        title: "Simple Calculator",
-        description: "Basic calculator with four operations",
-        difficulty: "Intermediate",
-        code: `class Calculator {
-  add(a, b) {
-    return a + b;
-  }
-  
-  subtract(a, b) {
-    return a - b;
-  }
-  
-  multiply(a, b) {
-    return a * b;
-  }
-  
-  divide(a, b) {
-    if (b === 0) {
-      return "Cannot divide by zero!";
-    }
-    return a / b;
-  }
-}
-
-// Usage
-const calc = new Calculator();
-console.log(calc.add(5, 3)); // 8
-console.log(calc.multiply(4, 7)); // 28`,
-      },
-      {
-        id: 4,
-        title: "For Loop Examples",
-        description: "Different ways to use for loops",
-        difficulty: "Beginner",
-        code: `// Basic for loop
-for (let i = 0; i < 5; i++) {
-  console.log("Count: " + i);
-}
-
-// For...of loop (arrays)
-const colors = ['red', 'green', 'blue'];
-for (const color of colors) {
-  console.log("Color: " + color);
-}
-
-// For...in loop (objects)
-const person = {name: 'Alice', age: 16, grade: '10th'};
-for (const key in person) {
-  console.log(key + ": " + person[key]);
-}`,
-      },
+      
     ],
     html: [
       {
@@ -116,7 +63,7 @@ for (const key in person) {
 </head>
 <body>
     <h1>Welcome to [Your Name]'s Webpage</h1>
-    <img src="profile.jpg" alt="Your Picture">
+    <img id="changeColor" src="profile.jpg" alt="Your Picture">
     <p>Hi! My name is [Your Name]. This is a small introduction about me.</p>
     <div class="hobbies">
         <h2>My Hobbies</h2>
@@ -152,12 +99,14 @@ for (const key in person) {
             <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
         </div>
+        <div class="time" id="timeDisplay"></div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
         <h1>Welcome to My Portfolio</h1>
         <p>Hi! I'm [Your Name], a budding web developer passionate about design and coding.</p>
+        <button id="greetButton">Click Me!</button>
     </section>
 
     <!-- Cards Section -->
@@ -229,7 +178,8 @@ for (const key in person) {
         title: "Proper Layout",
         description: "CSS Layout for the portfolio page",
         difficulty: "Intermediate",
-        code: `body {
+        code: `
+        body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
@@ -248,6 +198,14 @@ for (const key in person) {
             color: white;
             text-decoration: none;
             margin: 0 1em;
+        }
+        button{
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 10px;
+            outline: none;
+            font-size: 20px;
+            cursor: pointer;
         }
         .hero {
             text-align: center;
@@ -269,6 +227,7 @@ for (const key in person) {
             justify-content: center;
             gap: 20px;
             padding: 20px;
+            cursor: pointer;
         }
         .card {
             background-color: white;
